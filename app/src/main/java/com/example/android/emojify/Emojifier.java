@@ -18,6 +18,8 @@ package com.example.android.emojify;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.util.SparseArray;
 import android.widget.Toast;
@@ -39,7 +41,7 @@ class Emojifier {
      * @param context The application context.
      * @param picture The picture in which to detect the faces.
      */
-    static void detectFaces(Context context, Bitmap picture) {
+    static Bitmap detectFacesAndOverlayEmoji(Context context, Bitmap picture) {
 
         // TODO (3): Change the name of the detectFaces() method to detectFacesAndOverlayEmoji() and the return type from void to Bitmap
 
@@ -71,6 +73,7 @@ class Emojifier {
                 whichEmoji(face);
 
                 // TODO (4): Create a variable called emojiBitmap to hold the appropriate Emoji bitmap and remove the call to whichEmoji()
+                Drawable emojiBitmap = new Bitmap();
                 // TODO (5): Create a switch statement on the result of the whichEmoji() call, and assign the proper emoji bitmap to the variable you created
                 // TODO (8): Call addBitmapToFace(), passing in the resultBitmap, the emojiBitmap and the Face  object, and assigning the result to resultBitmap
 
@@ -91,7 +94,7 @@ class Emojifier {
      * @param face The face for which you pick an emoji.
      */
 
-    private static void whichEmoji(Face face) {
+    private static Emoji whichEmoji(Face face) {
 
         // TODO (1): Change the return type of the whichEmoji() method from void to Emoji.
         // Log all the probabilities
@@ -137,6 +140,7 @@ class Emojifier {
         Log.d(LOG_TAG, "whichEmoji: " + emoji.name());
 
         // TODO (2): Have the method return the selected Emoji type.
+        return emoji;
     }
 
     // TODO (6) Create a method called addBitmapToFace() which takes the background bitmap, the Emoji bitmap, and a Face object as arguments and returns the combined bitmap with the Emoji over the face.
